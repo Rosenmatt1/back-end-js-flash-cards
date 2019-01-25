@@ -3,6 +3,9 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('methods', table => {
     table.increments()
     table.string('name').notNullable().defaultsTo('')
+    table.string('description').notNullable().defaultsTo('')
+    table.string('example').notNullable().defaultsTo('')
+    table.string('link').notNullable().defaultsTo('')
     // table.integer('population').notNullable().defaultsTo(0)
     // table.timestamps(true, true)
   })
@@ -11,12 +14,3 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
   return knex.schema.dropTable('methods')
 };
-
-
-
-// { id: 1, name: 'map' },
-// { id: 2, name: 'filter' },
-// { id: 3, name: 'reduce' },
-// { id: 4, name: 'push' },
-// { id: 5, name: 'pop' },
-// { id: 6, name: 'splice' }

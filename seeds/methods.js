@@ -5,13 +5,28 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('methods').insert([
-        { id: 1, name: 'map' },
-{ id: 2, name: 'filter' },
-{ id: 3, name: 'reduce' },
-{ id: 4, name: 'push' },
-{ id: 5, name: 'pop' },
-{ id: 6, name: 'splice' },
-{ id: 7, name: 'poopy' }
+        {
+          id: 1,
+          name: ".map",
+          description: "creates a new array with the results of calling a provided function on every element in the calling array.",
+          example: "",
+          
+          link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"
+        },
+        {
+          id: 2,
+          name: ".filter",
+          description: "creates a new array with all elements that pass the test implemented by the provided function.",
+          example: "",
+          link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"
+        },
+        {
+          id: 3,
+          name: ".reduce",
+          description: "executes a reducer function (that you provide) on each member of the array resulting in a single output value.",
+          example: "",
+          link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce"
+        }
       ]);
     });
 };

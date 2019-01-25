@@ -6,10 +6,11 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('./knexfile.js')[env];
 const knex = require('knex')(config);
 
+const cors = require('cors')
+app.use(cors())
+
 // const sql = knex('methods').toString();
-
 // console.log(sql);
-
 // knex.destroy();
 
 app.get('/', (req, res) => {
