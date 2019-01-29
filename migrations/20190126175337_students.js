@@ -6,8 +6,7 @@ exports.up = function (knex, Promise) {
     table.string('description').notNullable().defaultsTo('')
     table.string('studentID').notNullable().defaultsTo('')
     
-    // table.integer('population').notNullable().defaultsTo(0)
-    // table.timestamps(true, true)
+   
   })
 };
 

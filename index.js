@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
 const port = 3001
+
 const env = process.env.NODE_ENV || 'development';
 const config = require('./knexfile.js')[env];
 const knex = require('knex')(config);
+
 const cors = require('cors')
 const parser = require('body-parser')
 
@@ -24,22 +26,39 @@ app.get('/', (req, res) => {
     });
 })
 
-app.get('/:method', (req, res) => {
-  const tag = req.params.method
-  res.status(200).send("Poo poo")
+app.get('/flashcards', (req, res) => {
+  knex('methods')
+    .then((rows) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      next(err);
+    });
 })
 
-// app.post('/wallabies', (req, res, next) => {
-//   console.log(req.body)
-
-//   knex('wallabies').insert(req.body).returning('*')
-//     .then((rows) => {
-//       res.send(rows);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
+// app.get('/:tag', (req, res) => {
+//   const tag = req.params.tag
+//   res.status(200).send("Poo poo")
 // })
+
+app.post('/flashcards', (req, res, next) => {
+  // console.log(req.body)
+
+  // const testOb = {
+  //   name: ".includes",
+  //   description: "Check to see if includes",
+  //   link: "http://includer.com",
+  // }
+  knex('methods').insert(req.body).returning('*')
+    .then((rows) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      next(err);
+    });
+})
+
+
 
 // app.get('/:tag', (req, res, next) => {
 //   const tag = req.params.tag
