@@ -12,10 +12,6 @@ const parser = require('body-parser')
 app.use(parser.json())
 app.use(cors())
 
-// const sql = knex('methods').toString();
-// console.log(sql);
-// knex.destroy();
-
 app.get('/', (req, res) => {
   knex('methods')
     .then((rows) => {
@@ -28,22 +24,6 @@ app.get('/', (req, res) => {
 
 app.get('/flashcards', (req, res) => {
   knex('methods')
-    .then((rows) => {
-      res.send(rows);
-    })
-    .catch((err) => {
-      next(err);
-    });
-})
-
-// app.get('/:tag', (req, res) => {
-//   const tag = req.params.tag
-//   res.status(200).send("Poo poo")
-// })
-
-app.post('/flashcards', (req, res, next) => {
-  // console.log(req.body)
-  knex('methods').insert(req.body).returning('*')
     .then((rows) => {
       res.send(rows);
     })
@@ -66,7 +46,7 @@ app.post('/flashcards', (req, res, next) => {
 app.put('/flashcards/:id', (req, res, next) => {
   console.log("req body", req.body)
 
-  knex('flashcards').delete(req.body).where('id', req.params.id).returning('*')
+  knex('methods').update(req.body).where('id', req.params.id).returning('*')
     .then((rows) => {
       res.send(rows);
     })
@@ -74,6 +54,17 @@ app.put('/flashcards/:id', (req, res, next) => {
       next(err);
     });
 })
+
+// app.delete('/flashcards/:id', (req, res, next) => {
+//   console.log("req body", req.body)
+//   knex('methods').del(req.body).where('id', req.params.id).returning('*')
+//     .then((rows) => {
+//       res.send(rows);
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// })
 
 
 
