@@ -43,12 +43,6 @@ app.get('/flashcards', (req, res) => {
 
 app.post('/flashcards', (req, res, next) => {
   // console.log(req.body)
-
-  // const testOb = {
-  //   name: ".includes",
-  //   description: "Check to see if includes",
-  //   link: "http://includer.com",
-  // }
   knex('methods').insert(req.body).returning('*')
     .then((rows) => {
       res.send(rows);
@@ -57,6 +51,31 @@ app.post('/flashcards', (req, res, next) => {
       next(err);
     });
 })
+
+app.post('/flashcards', (req, res, next) => {
+  // console.log(req.body)
+  knex('methods').insert(req.body).returning('*')
+    .then((rows) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      next(err);
+    });
+})
+
+app.put('/flashcards/:id', (req, res, next) => {
+  console.log("req body", req.body)
+
+  knex('flashcards').delete(req.body).where('id', req.params.id).returning('*')
+    .then((rows) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      next(err);
+    });
+})
+
+
 
 
 
