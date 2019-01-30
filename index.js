@@ -10,7 +10,6 @@ const cors = require('cors')
 const parser = require('body-parser')
 const dotenv = require("dotenv")
 
-
 app.use(parser.json())
 app.use(cors())
 
@@ -45,17 +44,17 @@ app.post('/flashcards', (req, res, next) => {
     });
 })
 
-app.put('/flashcards/:id', (req, res, next) => {
-  console.log("req body", req.body)
+// app.put('/flashcards/:id', (req, res, next) => {
+//   console.log("req body", req.body)
 
-  knex('methods').update(req.body).where('id', req.params.id).returning('*')
-    .then((rows) => {
-      res.send(rows);
-    })
-    .catch((err) => {
-      next(err);
-    });
-})
+//   knex('methods').update(req.body).where('id', req.params.id).returning('*')
+//     .then((rows) => {
+//       res.send(rows);
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// })
 
 // app.delete('/flashcards/:id', (req, res, next) => {
 //   console.log("req body", req.body)
