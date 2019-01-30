@@ -8,6 +8,9 @@ const knex = require('knex')(config);
 
 const cors = require('cors')
 const parser = require('body-parser')
+const dotenv = require("dotenv")
+const port = process.env.PORT || 3001
+
 
 app.use(parser.json())
 app.use(cors())
